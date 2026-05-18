@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="hal.png" alt="HAL" width="420">
+</p>
+
 # HAL
 
 > Won't lock anyone out of any airlocks.
