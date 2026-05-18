@@ -14,3 +14,6 @@
 secrets.yaml
 *.key
 *.pem
+
+# Home Assistant runtime data — created by the container on first boot
+home-assistant/config/
