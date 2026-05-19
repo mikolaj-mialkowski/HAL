@@ -28,12 +28,26 @@ HAL/
 
 Runtime data (HA's `config/`, secrets, future model files) lives outside the repo.
 
-## Roadmap, roughly
+## Roadmap
 
-1. Repo scaffold — *current*
-2. HA running in Docker
-3. First integrations + automations
-4. Apple Home back-bridge
-5. Local LLM via HA's Assist
+- [x] Repo scaffold
+- [x] HA running in Docker (on this Mac)
+- [x] Hue + Withings wired in *(automations skipped — not interested)*
+- [ ] Apple Home back-bridge *(deferred — needs a Linux host for mDNS)*
+- [x] Local LLM via HA's Assist *(Ollama + `gemma4:e2b`, native on Mac)*
+- [ ] **OpenClaw orchestration layer — next.** The agent that fans tool
+  calls out to MCP servers (HA, later weather/calendar/etc.) and consults
+  Ollama for inference. Lets HAL be talked to from Telegram, iMessage,
+  Signal — not just from inside HA.
+- [ ] Dedicated always-on hardware (Mac mini / Mac Studio)
 
-LLM stack leaning OpenClaw + Ollama (likely Gemma) — not this phase to decide.
+## Phase 6 — what gets added, visually
+
+```mermaid
+flowchart LR
+  U[You<br/>Telegram · iMessage · Signal · ...] --> OC[OpenClaw<br/><i>agent / orchestrator</i>]
+  OC <-->|inference| OL[(Ollama<br/>gemma4:e2b)]
+  OC <-.MCP.-> HA[HA MCP Server]
+  HA --> Bridge[Hue Bridge · bulbs]
+  HA --> Other[Withings · sensors · scenes]
+```
